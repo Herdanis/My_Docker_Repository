@@ -6,9 +6,9 @@ on:
       - ".github/workflows/build_and_push.yml"
 
 env:
-  name: php8.1
-  version: 1.0
-  dockerfile: dockerfiles/Dockerfile_hello_world
+  NAME: php8.1
+  VERSION: 1.0
+  DOCKERFILE: dockerfiles/Dockerfile_hello_world
 
 jobs:
   docker:
@@ -31,5 +31,5 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/$name:$version
-          file: $dockerfile
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.NAME }}:${{ env.VERSION }}
+          file: ${{ env.DOCKERFILE }}
