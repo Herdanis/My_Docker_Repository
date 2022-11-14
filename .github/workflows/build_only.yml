@@ -22,7 +22,7 @@ jobs:
       - name: Build the Docker image
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            docker build . --file $file --tag my-image-name:$(date +%s)
+            docker build --file $file .
           done
     # - name: Build the Docker image
     #   run: docker build . --file $file --tag my-image-name:$(date +%s)
