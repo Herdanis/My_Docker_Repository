@@ -1,0 +1,51 @@
+FROM php:8.1-fpm
+
+ENV TZ=Asia/Jakarta
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    cron \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    libfreetype6-dev \
+    libicu-dev \
+    libjpeg62-turbo-dev \
+    libmcrypt-dev \
+    libxslt1-dev \
+    libzip-dev \
+    libpq-dev \
+    zip \
+    unzip
+
+# Clear cache
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y iputils-ping
+
+# Install PHP extensions
+RUN docker-php-ext-install \
+    bcmath \
+    ctype \
+    fileinfo \
+    json \
+    mbstring \
+    pdo_mysql \
+    tokenizer \
+    xml \
+    exif \
+    pcntl \
+    gd \
+    intl \
+    xsl \
+    zip \
+    pdo_pgsql \
+    pgsql \
+    mysqli \
+    soap
+
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+# Get latest Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
