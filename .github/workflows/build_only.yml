@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest  # windows-latest | macos-latest
-    name: Test changed-files
+    name: Check Docker Files
     steps:
       - uses: actions/checkout@v3
         with:
@@ -18,9 +18,12 @@ jobs:
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v34
+        with:
+          files: |
+            dockerfiles/**
 
       - name: Build the Docker image
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            docker build --file $file -t test .
+            docker build --file $file .
           done
