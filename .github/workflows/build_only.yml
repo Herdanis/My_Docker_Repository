@@ -1,0 +1,28 @@
+name: Docker Build Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # windows-latest | macos-latest
+    name: Test changed-files
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v34
+
+      - name: List all changed files
+        run: |
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            echo "$file was changed"
+          done
+    # - name: Build the Docker image
+    #   run: docker build . --file $file --tag my-image-name:$(date +%s)
