@@ -20,7 +20,7 @@ jobs:
         uses: tj-actions/changed-files@v34
 
       - name: Build the Docker image
-        run: 
+        run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            docker build --file $file .
+            docker build --file Dockerfile_hello_world .
           done
