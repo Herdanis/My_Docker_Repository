@@ -20,8 +20,8 @@ jobs:
         uses: tj-actions/changed-files@v34
 
       - name: Build the Docker image
-        # run: echo ${{ steps.changed-files.outputs.all_changed_files }}
-        run: docker build --file ${{ steps.changed-files-specific.outputs.all_changed_files }} -t test .
+        run: echo ${{ steps.changed-files-specific.outputs.all_changed_files }}
+        # run: docker build --file ${{ steps.changed-files-specific.outputs.all_changed_files }} -t test .
         # run: |
         #   for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
         #     image="$file"
