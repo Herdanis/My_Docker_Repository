@@ -22,5 +22,6 @@ jobs:
       - name: Build the Docker image
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            docker build --file ${file} .
+            image="$file"
+            docker build --file $image .
           done
