@@ -1,8 +1,6 @@
-name: Docker Build Image CI
+name: Docker Check Build Image 
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
