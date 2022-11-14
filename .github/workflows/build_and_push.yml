@@ -1,9 +1,14 @@
-name: build_and_push
+name: Publish to docker hub
 
 on:
   push:
-    branches:
-      - 'main'
+    paths:
+      - ".github/workflows/build_and_push.yml"
+
+env:
+  name: php8.1
+  version: 1.0
+  dockerfile: dockerfiles/Dockerfile_hello_world
 
 jobs:
   docker:
@@ -26,5 +31,5 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/$APP:$LATEST
-          file: $DOCKERFILE
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/$name:$version
+          file: $dockerfile
