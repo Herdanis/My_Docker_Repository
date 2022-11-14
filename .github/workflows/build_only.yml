@@ -23,5 +23,6 @@ jobs:
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             image="$file"
+            echo $image
             docker build --file $image .
           done
