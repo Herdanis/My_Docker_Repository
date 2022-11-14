@@ -19,10 +19,10 @@ jobs:
         id: changed-files
         uses: tj-actions/changed-files@v34
 
-      - name: List all changed files
+      - name: Build the Docker image
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            echo "$file was changed"
+            docker build . --file $file --tag my-image-name:$(date +%s)
           done
     # - name: Build the Docker image
     #   run: docker build . --file $file --tag my-image-name:$(date +%s)
