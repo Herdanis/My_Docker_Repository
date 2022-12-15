@@ -1,7 +1,11 @@
 FROM alpine:latest
 
 RUN apk add git
+# RUN git config --global user.name "username"
+# RUN git config --global user.email "name@email.com"
 
 RUN apk add go
 
 RUN go version
+
+WORKDIR /home
