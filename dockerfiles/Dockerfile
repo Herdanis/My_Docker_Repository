@@ -1,7 +1,7 @@
 FROM alpine:latest
 
-RUN apk git
+RUN apk add git
 
-RUN apk go
+RUN apk add go
 
 RUN go version
