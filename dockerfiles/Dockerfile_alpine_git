@@ -6,4 +6,4 @@ RUN apk add go
 
 RUN go version
 
-CMD cd /home/
+RUN cd /home/
