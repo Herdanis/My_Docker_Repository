@@ -5,5 +5,3 @@ RUN apk add git
 RUN apk add go
 
 RUN go version
-
-RUN cd /home/
